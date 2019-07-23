@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+
+ <head>
+ 
+  <title>Code Player</title>
+   <script src="jquery-3.4.1.min.js"></script>
+     <script src="jquery-ui/jquery-ui.js"></script> 
+      <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+       
+        <style type="text/css">
+		  body{
+		       margin:0;
+			   padding:0;
+			   font-family:sans-serif;
+		       }
+          #topbar{
+		          background-color:#EEEEEE;
+				  width:100%;
+				  height:40px;
+				 
+		         }
+          #logo{
+		         font-size:19px;
+		         font-weight:bold;
+	    		 padding:8px 0 0 10px;
+				 float:left;
+		       }
+			   
+		  
+
+          #buttoncontainer{
+                 width:370px;
+				 margin:0 auto;
+				 padding-left:145px;
+			               }
+		  .togglebutton{
+                 float:left;
+                 border:1px solid grey;
+				 border-right:none;
+				 padding:6px;
+				 font-size:90%;
+				 margin-top:5px;
+				 
+
+                       }
+          #html{
+                border-top-left-radius:4px;
+				border-bottom-left-radius:4px;
+               }		  
+		  #output{
+                border-top-right-radius:4px;
+				border-bottom-right-radius:4px;
+				border-right:1px solid grey;
+				}
+          .active{
+		        background-color:#E2F2F2;
+		         }
+		  .highlighted{
+		        background-color:#808080;
+		              }
+		  textarea{
+		        resize:none;
+				border-top:none;
+				border-color:grey;
+		  
+		          }
+	      iframe{
+		        border:none;
+		         }
+		 .pannel{
+                float:left;
+                border-left:none;
+                 }	
+         .hidden{
+
+                display:none;
+
+                }		 
+        </style>		
+ </head>
+ 
+ <body>
+     <div id="topbar">
+	   <div id="logo">
+    	   CodePlayer
+	   </div>
+       
+	   <div id="buttoncontainer">
+         
+		 <div class="togglebutton active" id="html">HTML</div>
+          
+         <div class="togglebutton" id="css">CSS</div>
+
+         <div class="togglebutton" id="javascript">JavaScript</div>
+		 
+		 <div class="togglebutton active" id="output">Output</div>
+		 
+	   </div>
+	   
+	 </div>
+	 
+	 <div id="bodycontainer">
+	   
+	   <textarea id="htmlpannel" class="pannel"><p id="para">Hello World!</p></textarea>
+	    
+       <textarea id="csspannel" class="pannel hidden">p {color:green;}</textarea>
+		 
+	   <textarea id="javascriptpannel" class="pannel hidden">
+	   </textarea>
+		 
+	   <iframe id="outputpannel" class="pannel" ></iframe>	
+	 
+	 
+	 
+	 </div>
+	 
+	<script type="text/javascript">
+	    function updateOutput() {
+		  
+		  $("iframe").contents().find("html").html("<html><head><style type='text/css'>" +$("#csspannel").val()+ "</style></head><body>"+$("#htmlpannel").val()+"</body></html>");
+		   
+		   document.getElementById("outputpannel").contentWindow.eval($("#javascriptpannel").val());
+		   
+		 }
+	      
+        $(".togglebutton").hover(function() {
+		
+		  $(this).addClass("highlighted");
+		  
+		  },function() {
+		  
+		  $(this).removeClass("highlighted");
+		
+		 }); 
+		  
+		 $(".togglebutton").click(function() {
+          
+		  $(this).toggleClass("active");
+		  
+		  $(this).removeClass("highlighted");
+		  
+		  var pannelId=$(this).attr("id")+"pannel";
+		  
+		  $("#"+pannelId).toggleClass("hidden");
+		   
+		  var numberOfActivePannels=4-$(".hidden").length;
+
+          $(".pannel").width(($(window).width()/numberOfActivePannels)-10);				  
+		  
+         });		
+         
+          $(".pannel").height($(window).height()-$("#topbar").height()-9);
+        
+       	  $(".pannel").width(($(window).width()/2)-10);
+		
+		   updateOutput();
+		 
+		  $("textarea").on('change keyup paste',function() {
+
+           updateOutput();
+		  
+           });
+        		 
+       		
+		
+               		
+    </script>
+	
+ </body>
+  
+</html>  
