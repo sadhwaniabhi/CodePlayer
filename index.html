@@ -4,80 +4,75 @@
  <head>
  
   <title>Code Player</title>
-   <script src="jquery-3.4.1.min.js"></script>
-     <script src="jquery-ui/jquery-ui.js"></script> 
-      <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="jquery-ui/jquery-ui.js"></script> 
+  <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
        
-        <style type="text/css">
-		  body{
-		       margin:0;
-			   padding:0;
-			   font-family:sans-serif;
-		       }
-          #topbar{
-		          background-color:#EEEEEE;
-				  width:100%;
-				  height:40px;
+  <style type="text/css">
+	body{
+				margin:0;
+				padding:0;
+				font-family:sans-serif;
+	       }
+    #topbar{
+				background-color:#EEEEEE;
+				width:100%;
+				height:40px;
 				 
-		         }
-          #logo{
-		         font-size:19px;
-		         font-weight:bold;
-	    		 padding:8px 0 0 10px;
-				 float:left;
-		       }
-			   
-		  
-
-          #buttoncontainer{
+	       }
+    #logo{
+		        font-size:19px;
+		        font-weight:bold;
+	    		padding:8px 0 0 10px;
+				float:left;
+		  }
+    #buttoncontainer{
                  width:370px;
 				 margin:0 auto;
 				 padding-left:145px;
-			               }
-		  .togglebutton{
+			         }
+    .togglebutton{
                  float:left;
                  border:1px solid grey;
 				 border-right:none;
 				 padding:6px;
 				 font-size:90%;
 				 margin-top:5px;
-				 
-
-                       }
-          #html{
+                }
+    #html{
                 border-top-left-radius:4px;
 				border-bottom-left-radius:4px;
                }		  
-		  #output{
+    #output{
                 border-top-right-radius:4px;
 				border-bottom-right-radius:4px;
 				border-right:1px solid grey;
 				}
-          .active{
+    .active{
 		        background-color:#E2F2F2;
 		         }
-		  .highlighted{
+	.highlighted{
 		        background-color:#808080;
 		              }
-		  textarea{
+    textarea{
 		        resize:none;
 				border-top:none;
 				border-color:grey;
 		  
 		          }
-	      iframe{
+	iframe{
 		        border:none;
 		         }
-		 .pannel{
+    .pannel{
                 float:left;
                 border-left:none;
                  }	
-         .hidden{
+    .hidden{
 
                 display:none;
 
                 }		 
-        </style>		
+   </style>		
  </head>
  
  <body>
@@ -98,33 +93,24 @@
 		 
 	   </div>
 	   
-	 </div>
-	 
-	 <div id="bodycontainer">
+	</div>
+	<div id="bodycontainer">
 	   
 	   <textarea id="htmlpannel" class="pannel"><p id="para">Hello World!</p></textarea>
-	    
        <textarea id="csspannel" class="pannel hidden">p {color:green;}</textarea>
-		 
-	   <textarea id="javascriptpannel" class="pannel hidden">
-	   </textarea>
-		 
+	   <textarea id="javascriptpannel" class="pannel hidden"></textarea>
 	   <iframe id="outputpannel" class="pannel" ></iframe>	
-	 
-	 
-	 
-	 </div>
-	 
+	</div>
 	<script type="text/javascript">
 	    function updateOutput() {
-		  
-		  $("iframe").contents().find("html").html("<html><head><style type='text/css'>" +$("#csspannel").val()+ "</style></head><body>"+$("#htmlpannel").val()+"</body></html>");
+		  $("iframe").contents().find("html").html("<html><head><style type='text/css'>" +$("#csspannel").val()+ "</style></head><body>"+
+												    $("#htmlpannel").val()+"</body></html>");
 		   
 		   document.getElementById("outputpannel").contentWindow.eval($("#javascriptpannel").val());
 		   
 		 }
 	      
-        $(".togglebutton").hover(function() {
+          $(".togglebutton").hover(function() {
 		
 		  $(this).addClass("highlighted");
 		  
@@ -162,9 +148,6 @@
 		  
            });
         		 
-       		
-		
-               		
     </script>
 	
  </body>
